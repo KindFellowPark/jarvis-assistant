@@ -1,0 +1,21 @@
+{
+  "version": "local-sensitivity-v2",
+  "mode": "local_only_pre_provider_gate",
+  "decisions": ["eligible", "review", "blocked"],
+  "blocked_categories": {
+    "health": ["patient portal", "medical record", "diagnosis", "prescription", "lab result", "health insurance", "surgical consent"],
+    "credentials_or_secrets": ["password:", "api key:", "access token:", "client secret:", "begin private key", "pin is:"],
+    "identity_or_tax": ["social security number", "taxpayer identification", "tax return", "w-2", "1099"],
+    "full_financial_document": ["routing number", "bank account number", "transaction history", "full account statement"],
+    "work_scope": ["contracts team", "board approval", "purchase order"]
+  },
+  "blocked_domains": ["healthportal.example.com", "clinic.example.com", "work.example.com"],
+  "review_conditions": ["unassessed_attachments", "uncertain_current_scope", "incomplete_thread", "normalization_failed"],
+  "rules": {
+    "provider_eligibility_is_code_owned": true,
+    "model_cannot_clear_block_or_review": true,
+    "pseudonymization_is_not_proof_of_safety": true,
+    "no_provider_call_during_classification": true,
+    "exact_payload_approval_still_required": true
+  }
+}

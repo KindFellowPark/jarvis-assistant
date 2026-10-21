@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+.env
+.env.*
+# queue databases, logs and run output: hold message text
+state/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+# run folders: written by `bun run setup`, and in use they hold code-made copies of household data
+runs/

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Starts the listener at login and restarts it if it exits.
+     Install: replace REPO with the absolute path of this repository, copy to ~/Library/LaunchAgents,
+     then launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/jarvis.listener.plist -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.example.jarvis.listener</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/bun</string>
+    <string>src/main.ts</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>REPO/listener</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>KeepAlive</key>
+  <true/>
+  <key>ThrottleInterval</key>
+  <integer>30</integer>
+  <key>StandardOutPath</key>
+  <string>REPO/state/jarvis.listener.log</string>
+  <key>StandardErrorPath</key>
+  <string>REPO/state/jarvis.listener.err.log</string>
+</dict>
+</plist>

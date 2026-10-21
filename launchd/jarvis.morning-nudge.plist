@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- At 7:00 each morning posts the morning check to the listener's local door
+     (jobs/morning_nudge.ts). A run missed while the Mac slept happens on wake, and the job itself
+     skips the day if that is after 11 AM.
+     Install: replace REPO with the absolute path of this repository, copy to ~/Library/LaunchAgents,
+     then launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/jarvis.morning-nudge.plist -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.example.jarvis.morning-nudge</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/bun</string>
+    <string>jobs/morning_nudge.ts</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>REPO/listener</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>7</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>REPO/state/jarvis.morning-nudge.log</string>
+  <key>StandardErrorPath</key>
+  <string>REPO/state/jarvis.morning-nudge.err.log</string>
+</dict>
+</plist>

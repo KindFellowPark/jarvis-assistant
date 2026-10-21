@@ -1,0 +1,32 @@
+[
+  {
+    "id": "insurance-claim",
+    "about": "your {name} claim",
+    "since": "2026-10-21T00:00:00Z",
+    "until": "2027-04-30",
+    "query": "(from:harbormutual.example.com OR from:claimsdesk.example.com OR \"Harbor Mutual\")",
+    "trusted_domains": ["harbormutual.example.com", "claimsdesk.example.com"],
+    "sender_names": { "claimsdesk.example.com": "ClaimsDesk" },
+    "ignore_domains": ["news.harbormutual.example.com"],
+    "must_mention": ["harbor mutual", "harbormutual"],
+    "mention_names": { "harbor mutual": "Harbor Mutual", "harbormutual": "Harbor Mutual" },
+    "must_also_mention": ["claim", "adjuster", "inspection", "estimate", "payment"],
+    "routine": {
+      "phrases": ["we received your claim", "claim has been received", "automatic reply", "out of office"],
+      "unless": ["approved", "denied", "schedule", "adjuster", "need more", "payment issued"]
+    },
+    "thread_ids": [],
+    "impersonation": { "name": "Harbor Mutual", "claims": ["harbor mutual", "harbormutual"], "real_domain": "harbormutual.example.com" }
+  },
+  {
+    "id": "store-refund",
+    "about": "your Northwind refund request",
+    "since": "2026-10-11T00:00:00Z",
+    "until": "2026-12-31",
+    "query": "(from:northwind.example.com OR from:payments.example.com OR northwind)",
+    "trusted_domains": ["northwind.example.com", "payments.example.com"],
+    "ignore_domains": ["deals.northwind.example.com"],
+    "must_mention": ["refund"],
+    "thread_ids": ["18f0c0ffee000001"]
+  }
+]

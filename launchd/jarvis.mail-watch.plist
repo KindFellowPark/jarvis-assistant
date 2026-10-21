@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Every 10 minutes runs the mail watches (jobs/mail_watch.ts, rules in jobs/mail_watches.json)
+     and texts the owner through the local door when a watched email has arrived. Between 9 at night
+     and 7 in the morning it texts nothing; a held text goes out on the first run after 7.
+     Install: replace REPO with the absolute path of this repository, copy to ~/Library/LaunchAgents,
+     then launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/jarvis.mail-watch.plist -->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.example.jarvis.mail-watch</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/bun</string>
+    <string>jobs/mail_watch.ts</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>REPO/listener</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+  <key>StartInterval</key>
+  <integer>600</integer>
+  <key>RunAtLoad</key>
+  <true/>
+  <key>StandardOutPath</key>
+  <string>REPO/state/jarvis.mail-watch.log</string>
+  <key>StandardErrorPath</key>
+  <string>REPO/state/jarvis.mail-watch.err.log</string>
+</dict>
+</plist>
